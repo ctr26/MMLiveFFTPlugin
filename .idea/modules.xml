@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MMLiveFFTPlugin.iml" filepath="$PROJECT_DIR$/MMLiveFFTPlugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/MMLiveFFTPlugin.iml" filepath="$PROJECT_DIR$/.idea/MMLiveFFTPlugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MMLiveFFTPlugin_.iml" filepath="$PROJECT_DIR$/MMLiveFFTPlugin_.iml" />
     </modules>
   </component>
 </project>

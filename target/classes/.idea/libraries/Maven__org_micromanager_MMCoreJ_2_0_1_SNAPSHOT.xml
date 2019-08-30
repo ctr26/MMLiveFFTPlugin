@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.micromanager:MMCoreJ:2.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/micromanager/MMCoreJ/2.0.1-SNAPSHOT/MMCoreJ-2.0.1-20170328.232704-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/micromanager/MMCoreJ/2.0.1-SNAPSHOT/MMCoreJ-2.0.1-20170328.232704-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/micromanager/MMCoreJ/2.0.1-SNAPSHOT/MMCoreJ-2.0.1-20170328.232704-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
