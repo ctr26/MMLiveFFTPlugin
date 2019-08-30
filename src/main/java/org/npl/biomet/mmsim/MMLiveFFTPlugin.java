@@ -26,6 +26,7 @@ import org.micromanager.display.DisplayWindow;
 //import org.micromanager.api.DisplayWindow;
 //import org.micromanager.display.InspectorPanel;
 //import org.micromanager.display.InspectorPlugin;
+import org.micromanager.display.internal.gearmenu.GearButton;
 import org.scijava.plugin.Plugin;
 import org.scijava.plugin.SciJavaPlugin;
 
@@ -34,8 +35,9 @@ import org.scijava.plugin.SciJavaPlugin;
  * Most of the action happens in the CVViewer class
  * @author nico
  */
-@Plugin(type = MenuPlugin.class)
-public class MMLiveFFTPlugin implements MenuPlugin, SciJavaPlugin {
+//@Plugin(type = MenuPlugin.class)
+@Plugin(type = DisplayGearMenuPlugin.class)
+public class MMLiveFFTPlugin implements DisplayGearMenuPlugin,MenuPlugin, SciJavaPlugin {
 
    private Studio studio_;
    static public final String VERSION_INFO = "0.0.1";
@@ -54,23 +56,22 @@ public class MMLiveFFTPlugin implements MenuPlugin, SciJavaPlugin {
    }
 
    @Override
+   public void onPluginSelected(DisplayWindow displayWindow) {
+      try {
+         FFTViewer fftviewer = new FFTViewer(studio_,displayWindow);
+         studio_.events().registerForEvents(fftviewer);
+      } catch (Exception ex) {
+         if (studio_ != null) {
+            studio_.logs().logError(ex);
+         }
+      }
+   }
+
+   @Override
    public void onPluginSelected() {
          try {
-            System.out.println(studio_);
-            System.out.println(studio_.getSnapLiveManager());
-            System.out.println(studio_.getSnapLiveManager().getDisplay());
-//            System.out.println(studio_.getSnapLiveManager().getDisplay().duplicate());
-            System.out.println(studio_.getSnapLiveManager().getDisplay().getDisplaySettings());
-            System.out.println(studio_.getSnapLiveManager().getDisplay().getDataProvider());
-            System.out.println(studio_.getSnapLiveManager().getDisplay().getDisplaySettings().getAllChannelSettings());
-
-            System.out.println(studio_.getSnapLiveManager().getDisplay().duplicate());
-//            studio_.getDisplayManager().createDisplay()
-//            DisplayWindow displayWindow = studio_.getSnapLiveManager().getDisplay().duplicate();
-
-
-            //            FFTViewer fftviewer = new FFTViewer(studio_);
-//            studio_.events().registerForEvents(fftviewer);
+            FFTViewer fftviewer = new FFTViewer(studio_);
+            studio_.events().registerForEvents(fftviewer);
          } catch (Exception ex) {
             if (studio_ != null) {
                studio_.logs().logError(ex);
