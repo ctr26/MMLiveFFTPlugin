@@ -17,6 +17,8 @@
 package org.npl.biomet.mmsim;
 
 import java.util.List;
+
+import com.google.common.eventbus.Subscribe;
 import org.micromanager.MenuPlugin;
 import org.micromanager.Studio;
 import org.micromanager.data.*;
@@ -27,6 +29,7 @@ import org.micromanager.display.DisplayWindow;
 //import org.micromanager.display.InspectorPanel;
 //import org.micromanager.display.InspectorPlugin;
 import org.micromanager.display.internal.gearmenu.GearButton;
+import org.micromanager.events.DatastoreClosingEvent;
 import org.scijava.plugin.Plugin;
 import org.scijava.plugin.SciJavaPlugin;
 
@@ -37,13 +40,15 @@ import org.scijava.plugin.SciJavaPlugin;
  */
 //@Plugin(type = MenuPlugin.class)
 @Plugin(type = DisplayGearMenuPlugin.class)
-public class MMLiveFFTPlugin implements DisplayGearMenuPlugin,MenuPlugin, SciJavaPlugin {
+public class MMLiveFFTPlugin implements DisplayGearMenuPlugin, SciJavaPlugin {
 
    private Studio studio_;
    static public final String VERSION_INFO = "0.0.1";
    static private final String COPYRIGHT_NOTICE = "Copyright by UCSF, 2015-2017";
    static private final String DESCRIPTION = "MMLiveFFTPlugin";
    static private final String NAME = "MMLiveFFTPlugin";
+   private RewritableDatastore fft_store;
+   private FFTViewer fftviewer;
 
    @Override
    public void setContext(Studio studio) {
@@ -58,7 +63,9 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin,MenuPlugin, SciJav
    @Override
    public void onPluginSelected(DisplayWindow displayWindow) {
       try {
-         FFTViewer fftviewer = new FFTViewer(studio_,displayWindow);
+         fft_store = studio_.data().createRewritableRAMDatastore();
+//         fft_store.registerForEvents(this);
+         fftviewer = new FFTViewer(studio_,fft_store,displayWindow);
          studio_.events().registerForEvents(fftviewer);
       } catch (Exception ex) {
          if (studio_ != null) {
@@ -67,18 +74,25 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin,MenuPlugin, SciJav
       }
    }
 
-   @Override
-   public void onPluginSelected() {
-         try {
-            FFTViewer fftviewer = new FFTViewer(studio_);
-            studio_.events().registerForEvents(fftviewer);
-         } catch (Exception ex) {
-            if (studio_ != null) {
-               studio_.logs().logError(ex);
-            }
-         }
-      }
-//   }
+   @Subscribe
+   public void onFFTClose(DatastoreClosingEvent e){
+//      e.getDatastore()
+      fftviewer = null;
+      fft_store = null;
+   }
+//
+//   @Override
+//   public void onPluginSelected() {
+//         try {
+//            FFTViewer fftviewer = new FFTViewer(studio_);
+//            studio_.events().registerForEvents(fftviewer);
+//         } catch (Exception ex) {
+//            if (studio_ != null) {
+//               studio_.logs().logError(ex);
+//            }
+//         }
+//      }
+////   }
 //}
    @Override
    public String getCopyright() {
