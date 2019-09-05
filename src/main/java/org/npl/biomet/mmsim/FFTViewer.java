@@ -10,7 +10,6 @@ import ij.process.FHT;
 import ij.process.FHT;
 import ij.process.FloatProcessor;
 import ij.ImagePlus;
-import ij.plugin.FFT;
 import ij.process.ImageProcessor;
 import ij.process.ShortProcessor;
 //import org.jtransforms.fft.FloatFFT_2D;
@@ -28,13 +27,14 @@ import org.micromanager.events.internal.DefaultLiveModeEvent;
 import java.io.IOException;
 
 //import org.micromanager.internal.SnapLiveManager;
-public class FFTViewer{
+public class FFTViewer implements Runnable{
 	private final Studio studio_;
 	private final SnapLiveManager live_;
+	private final FFT fft;
 
 	public DisplayWindow fft_display;
 	public Datastore fft_store;
-	private ImageJConverter ijconverter;
+//	private ImageJConverter ijconverter;
 	private DisplayWindow live_display;
 //	private FloatFFT_2D floatFFT_2D;
 
@@ -57,12 +57,13 @@ public class FFTViewer{
 
 	public FFTViewer(Studio studio, Datastore store, DisplayWindow displayWindow){
 		studio_ = studio;
-		ijconverter = studio_.data().getImageJConverter();
+//		ijconverter = studio_.data().getImageJConverter();
 		live_ = studio_.live();
 		fft_store = studio_.data().createRewritableRAMDatastore();
 		fft_store.setName("FFT");
 //		fft_store.registerForEvents(this);
 		fft_display = studio_.displays().createDisplay(fft_store);
+		fft = new FFT(studio_);
 //		fft_display.displayStatusString("FFT");
 		if(live_.getIsLiveModeOn()){
 			if(displayWindow==null){
@@ -85,7 +86,8 @@ public class FFTViewer{
 		ase.getIsOn();
 //		boolean isOnLive = ase.getIsOn();
 		if (live_.getIsLiveModeOn()) {
-			live_display = live_.getDisplay();
+//			this
+//			live_display = live_.getDisplay();
 			System.out.println(live_display);
 			if(live_display==null) {
 //				studio_.events().post(new DefaultLiveModeEvent(true));
@@ -101,41 +103,62 @@ public class FFTViewer{
 
 
 
-	@Subscribe
-	public void onNewLiveImage(DataProviderHasNewImageEvent e){
-//		System.out.println("New image");
-		current_image = e.getImage();
-		fft_display.setCustomTitle("FFT");
-//		fft_display.displayStatusString("FFT");
-//		fft_display.
-		try {
-			fft_store.putImage(doFFT(current_image));
-		} catch (IOException ex) {
-			ex.printStackTrace();
+//	@Subscribe
+//	public void onNewLiveImage(DataProviderHasNewImageEvent e){
+////		System.out.println("New image");
+//		current_image = e.getImage();
+////		fft_display.setCustomTitle("FFT");
+////		fft_display.displayStatusString("FFT");
+////		fft_display.
+//		try {
+//			fft_store.putImage(doFFT(current_image));
+//		} catch (IOException ex) {
+//			ex.printStackTrace();
+//		}
+//	}
+
+//
+//	public Image doFFT(Image image){
+////		System.out.println("Starting fft");
+//		Image raw_image = image;
+//		Image out;
+//
+//		ImageProcessor raw_image_ip = ijconverter.createProcessor(raw_image);
+//		FHT fht = new FHT(raw_image_ip);
+//
+//			if(fht.powerOf2Size()){
+//				fht.transform();
+//				ImageProcessor fft_processor = fht.getPowerSpectrum();
+//				ImageProcessor out_ip = fft_processor.convertToShort(false);
+//				out = ijconverter.createImage(out_ip, image.getCoords(), image.getMetadata());
+//
+//			}
+//			else{
+//				out = null;
+////				live_display.setCustomTitle("FFT error");
+//			}
+//
+//		return out;
+//	}
+
+	@Override
+	public void run() {
+	    System.out.println("Run");
+		boolean interrupt = false;
+		while (!interrupt) {
+			try {
+				current_image = live_display_provider.getAnyImage();
+				fft_store.putImage(fft.doFFT(current_image));
+				interrupt=false;
+				Thread.sleep(0);
+			} catch (IOException e) {
+				e.printStackTrace();
+				interrupt=true;
+			} catch(InterruptedException e){
+				System.out.println("End FFT");
+				interrupt=true;
+			}
+
 		}
-	}
-
-
-	public Image doFFT(Image image){
-//		System.out.println("Starting fft");
-		Image raw_image = image;
-		Image out;
-
-		ImageProcessor raw_image_ip = ijconverter.createProcessor(raw_image);
-		FHT fht = new FHT(raw_image_ip);
-
-			if(fht.powerOf2Size()){
-				fht.transform();
-				ImageProcessor fft_processor = fht.getPowerSpectrum();
-				ImageProcessor out_ip = fft_processor.convertToShort(false);
-				out = ijconverter.createImage(out_ip, image.getCoords(), image.getMetadata());
-
-			}
-			else{
-				out = null;
-//				live_display.setCustomTitle("FFT error");
-			}
-
-		return out;
 	}
 }

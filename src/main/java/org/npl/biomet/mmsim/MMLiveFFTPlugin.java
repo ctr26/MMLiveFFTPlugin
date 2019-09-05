@@ -1,8 +1,8 @@
 /**
- * Binding to ClearVolume 3D viewer View Micro-Manager datasets in 3D
+ * Live Fourier transform in micromanager.
  *
- * AUTHOR: Nico Stuurman COPYRIGHT: Regents of the University of California,
- * 2015
+ * AUTHOR: Craig Russell COPYRIGHT: Regents of the National Physical Laboratory, UK,
+ * 2018
  * LICENSE: This file is distributed under the BSD license. License text is
  * included with the source distribution.
  *
@@ -13,6 +13,9 @@
  * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY
  * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES.
  */
+
+//TODO: Thread it
+
 
 package org.npl.biomet.mmsim;
 
@@ -49,6 +52,7 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin, SciJavaPlugin {
    static private final String NAME = "MMLiveFFTPlugin";
    private RewritableDatastore fft_store;
    private FFTViewer fftviewer;
+   private Thread fftviewer_thread;
 
    @Override
    public void setContext(Studio studio) {
@@ -66,6 +70,9 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin, SciJavaPlugin {
          fft_store = studio_.data().createRewritableRAMDatastore();
 //         fft_store.registerForEvents(this);
          fftviewer = new FFTViewer(studio_,fft_store,displayWindow);
+         fftviewer_thread = new Thread(fftviewer);
+         fftviewer_thread.start();
+//         fftviewer_thread.
          studio_.events().registerForEvents(fftviewer);
       } catch (Exception ex) {
          if (studio_ != null) {
@@ -79,6 +86,7 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin, SciJavaPlugin {
 //      e.getDatastore()
       fftviewer = null;
       fft_store = null;
+      fftviewer_thread = null;
    }
 //
 //   @Override
