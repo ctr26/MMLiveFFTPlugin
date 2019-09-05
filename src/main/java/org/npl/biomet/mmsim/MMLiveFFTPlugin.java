@@ -14,8 +14,7 @@
  * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES.
  */
 
-//TODO: Thread it
-
+//TODO: Fix silly perpetual imagej loading bar
 
 package org.npl.biomet.mmsim;
 

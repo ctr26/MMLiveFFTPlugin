@@ -22,7 +22,7 @@ public class FFT {
 
         ImageProcessor raw_image_ip = ijconverter.createProcessor(raw_image);
         FHT fht = new FHT(raw_image_ip);
-
+        fht.setShowProgress(false);
         if(fht.powerOf2Size()){
             fht.transform();
             ImageProcessor fft_processor = fht.getPowerSpectrum();

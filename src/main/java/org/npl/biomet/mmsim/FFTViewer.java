@@ -83,7 +83,7 @@ public class FFTViewer implements Runnable{
 	@Subscribe
 	public void onLiveModeEvent(LiveModeEvent ase) {
 		System.out.println("Live on");
-		ase.getIsOn();
+//		ase.getIsOn();
 //		boolean isOnLive = ase.getIsOn();
 		if (live_.getIsLiveModeOn()) {
 //			this
@@ -91,7 +91,7 @@ public class FFTViewer implements Runnable{
 			System.out.println(live_display);
 			if(live_display==null) {
 //				studio_.events().post(new DefaultLiveModeEvent(true));
-			}else {
+			} else {
 				live_display_provider = live_display.getDataProvider();
 				live_display_provider.registerForEvents(this);
 			}
@@ -147,10 +147,13 @@ public class FFTViewer implements Runnable{
 		boolean interrupt = false;
 		while (!interrupt) {
 			try {
-				current_image = live_display_provider.getAnyImage();
-				fft_store.putImage(fft.doFFT(current_image));
-				interrupt=false;
-				Thread.sleep(0);
+                current_image = live_display_provider.getAnyImage();
+                fft_store.putImage(fft.doFFT(current_image));
+                interrupt = false;
+                Thread.sleep(0);
+            } catch(NullPointerException e) {
+                e.printStackTrace();
+                interrupt=false;
 			} catch (IOException e) {
 				e.printStackTrace();
 				interrupt=true;

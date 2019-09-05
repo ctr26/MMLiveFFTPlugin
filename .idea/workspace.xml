@@ -7,17 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daa8c566-560c-451f-a368-a32861318c77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_wendykierp_JTransforms_3_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__pl_edu_icm_JLargeArrays_1_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MMLiveFFTPlugin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MMLiveFFTPlugin.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MMLiveFFTPlugin.jar" beforeDir="false" afterPath="$PROJECT_DIR$/MMLiveFFTPlugin.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFTViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFTViewer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/MMLiveFFTPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/MMLiveFFTPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/npl/biomet/mmsim/FFTViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/npl/biomet/mmsim/FFTViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/npl/biomet/mmsim/MMLiveFFTPlugin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/npl/biomet/mmsim/MMLiveFFTPlugin.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,10 +28,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/MMLiveFFTPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1">
-              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+            <state relative-caret-position="-882">
+              <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
               <folding>
-                <element signature="e#0#4442#0" expanded="true" />
+                <element signature="e#0#4652#0" expanded="true" />
                 <element signature="imports" expanded="true" />
                 <element signature="e#3101#3102#0" expanded="true" />
                 <element signature="e#3137#3138#0" expanded="true" />
@@ -56,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFTViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2919">
-              <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
+            <state relative-caret-position="117">
+              <caret line="90" column="45" lean-forward="true" selection-start-line="90" selection-start-column="45" selection-end-line="90" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1520#1521#0" expanded="true" />
@@ -70,13 +63,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+            <state relative-caret-position="204">
+              <caret line="22" column="75" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#259#260#0" expanded="true" />
                 <element signature="e#325#326#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/openjdk-12.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Thread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="834" selection-start-line="834" selection-end-line="834" />
             </state>
           </provider>
         </entry>
@@ -125,8 +127,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/MMSIMPlugin.java" />
         <option value="$PROJECT_DIR$/_pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/MMLiveFFTPlugin.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/doFFT.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/MMLiveFFTPlugin.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFT.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFTViewer.java" />
       </list>
@@ -335,7 +337,7 @@
     <frame x="-1" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24749643" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24749643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -344,7 +346,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48569384" weight="0.35031846" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48569384" visible="true" weight="0.35031846" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4914163" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -352,7 +354,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3299363" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5143061" side_tool="true" weight="0.35031846" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3299363" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4899857" visible="true" weight="0.20636943" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4899857" weight="0.20636943" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -453,12 +455,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/openjdk-12.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="834" selection-start-line="834" selection-end-line="834" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="22" column="75" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#259#260#0" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/MMLiveFFTPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+        <state relative-caret-position="-882">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
           <folding>
-            <element signature="e#0#4442#0" expanded="true" />
+            <element signature="e#0#4652#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#3101#3102#0" expanded="true" />
             <element signature="e#3137#3138#0" expanded="true" />
@@ -472,22 +493,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/npl/biomet/mmsim/FFTViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2919">
-          <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
+        <state relative-caret-position="117">
+          <caret line="90" column="45" lean-forward="true" selection-start-line="90" selection-start-column="45" selection-end-line="90" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1520#1521#0" expanded="true" />
