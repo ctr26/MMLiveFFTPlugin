@@ -102,45 +102,17 @@ public class FFTViewer implements Runnable{
 	}
 
 
-
+///// This event posts before the datastore is availiable so we get a null pointer
 //	@Subscribe
 //	public void onNewLiveImage(DataProviderHasNewImageEvent e){
 ////		System.out.println("New image");
 //		current_image = e.getImage();
-////		fft_display.setCustomTitle("FFT");
-////		fft_display.displayStatusString("FFT");
-////		fft_display.
 //		try {
 //			fft_store.putImage(doFFT(current_image));
 //		} catch (IOException ex) {
 //			ex.printStackTrace();
 //		}
 //	}
-
-//
-//	public Image doFFT(Image image){
-////		System.out.println("Starting fft");
-//		Image raw_image = image;
-//		Image out;
-//
-//		ImageProcessor raw_image_ip = ijconverter.createProcessor(raw_image);
-//		FHT fht = new FHT(raw_image_ip);
-//
-//			if(fht.powerOf2Size()){
-//				fht.transform();
-//				ImageProcessor fft_processor = fht.getPowerSpectrum();
-//				ImageProcessor out_ip = fft_processor.convertToShort(false);
-//				out = ijconverter.createImage(out_ip, image.getCoords(), image.getMetadata());
-//
-//			}
-//			else{
-//				out = null;
-////				live_display.setCustomTitle("FFT error");
-//			}
-//
-//		return out;
-//	}
-
 	@Override
 	public void run() {
 	    System.out.println("Run");
