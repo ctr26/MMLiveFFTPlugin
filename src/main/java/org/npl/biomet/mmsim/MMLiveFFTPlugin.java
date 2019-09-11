@@ -46,9 +46,9 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin, SciJavaPlugin {
 
    private Studio studio_;
    static public final String VERSION_INFO = "0.0.1";
-   static private final String COPYRIGHT_NOTICE = "Copyright by UCSF, 2015-2017";
-   static private final String DESCRIPTION = "MMLiveFFTPlugin";
-   static private final String NAME = "MMLiveFFTPlugin";
+   static private final String COPYRIGHT_NOTICE = "";
+   static private final String DESCRIPTION = "Live FFT";
+   static private final String NAME = "Live FFT";
    private RewritableDatastore fft_store;
    private FFTViewer fftviewer;
    private Thread fftviewer_thread;
@@ -69,8 +69,8 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin, SciJavaPlugin {
          fft_store = studio_.data().createRewritableRAMDatastore();
 //         fft_store.registerForEvents(this);
          fftviewer = new FFTViewer(studio_,fft_store,displayWindow);
-         fftviewer_thread = new Thread(fftviewer);
-         fftviewer_thread.start();
+//         fftviewer_thread = new Thread(fftviewer);
+//         fftviewer_thread.start();
 //         fftviewer_thread.
          studio_.events().registerForEvents(fftviewer);
       } catch (Exception ex) {
@@ -85,7 +85,7 @@ public class MMLiveFFTPlugin implements DisplayGearMenuPlugin, SciJavaPlugin {
 //      e.getDatastore()
       fftviewer = null;
       fft_store = null;
-      fftviewer_thread = null;
+//      fftviewer_thread = null;
    }
 //
 //   @Override

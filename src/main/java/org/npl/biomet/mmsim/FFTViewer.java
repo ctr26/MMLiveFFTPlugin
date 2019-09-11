@@ -27,7 +27,7 @@ import org.micromanager.events.internal.DefaultLiveModeEvent;
 import java.io.IOException;
 
 //import org.micromanager.internal.SnapLiveManager;
-public class FFTViewer implements Runnable{
+public class FFTViewer {
 	private final Studio studio_;
 	private final SnapLiveManager live_;
 	private final FFT fft;
@@ -41,6 +41,7 @@ public class FFTViewer implements Runnable{
 	private Image current_image;
 	private DataProvider live_provider;
 	private DataProvider live_display_provider;
+	private Thread fftviewer_thread;
 //	private float[][] fft;
 
 	public FFTViewer(Studio studio) {
@@ -63,7 +64,7 @@ public class FFTViewer implements Runnable{
 		fft_store.setName("FFT");
 //		fft_store.registerForEvents(this);
 		fft_display = studio_.displays().createDisplay(fft_store);
-		fft = new FFT(studio_);
+
 //		fft_display.displayStatusString("FFT");
 		if(live_.getIsLiveModeOn()){
 			if(displayWindow==null){
@@ -75,6 +76,12 @@ public class FFTViewer implements Runnable{
 			live_display_provider = live_display.getDataProvider();
 			live_display_provider.registerForEvents(this);
 		}
+		fft = new FFT(studio_,live_display_provider,fft_store);
+		fftviewer_thread = new Thread(fft);
+		synchronized(fftviewer_thread){
+
+		}
+		fftviewer_thread.start();
 
 //		studio_.events().post(new DefaultLiveModeEvent(true));
 	}
@@ -85,19 +92,32 @@ public class FFTViewer implements Runnable{
 		System.out.println("Live on");
 //		ase.getIsOn();
 //		boolean isOnLive = ase.getIsOn();
+
+///  Code for being a MenuPlugin, doesn't work because the Live event comes before the Dataprovider is built.
+
+//		if (live_.getIsLiveModeOn()) {
+////			this
+////			live_display = live_.getDisplay();
+//			System.out.println(live_display);
+//			if(live_display==null) {
+////				studio_.events().post(new DefaultLiveModeEvent(true));
+//			} else {
+//				live_display_provider = live_display.getDataProvider();
+//				live_display_provider.registerForEvents(this);
+//			}
+//		} else {
+//			System.out.println("Live off");
+////			live_provider.unregisterForEvents(this);
+//		}
+// This code fails to pause the FFT thread for some reason.
 		if (live_.getIsLiveModeOn()) {
-//			this
-//			live_display = live_.getDisplay();
-			System.out.println(live_display);
-			if(live_display==null) {
-//				studio_.events().post(new DefaultLiveModeEvent(true));
-			} else {
-				live_display_provider = live_display.getDataProvider();
-				live_display_provider.registerForEvents(this);
+			fftviewer_thread.notify();
+		} else{
+			try {
+				fftviewer_thread.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		} else {
-			System.out.println("Live off");
-//			live_provider.unregisterForEvents(this);
 		}
 	}
 
@@ -113,27 +133,27 @@ public class FFTViewer implements Runnable{
 //			ex.printStackTrace();
 //		}
 //	}
-	@Override
-	public void run() {
-	    System.out.println("Run");
-		boolean interrupt = false;
-		while (!interrupt) {
-			try {
-                current_image = live_display_provider.getAnyImage();
-                fft_store.putImage(fft.doFFT(current_image));
-                interrupt = false;
-                Thread.sleep(0);
-            } catch(NullPointerException e) {
-                e.printStackTrace();
-                interrupt=false;
-			} catch (IOException e) {
-				e.printStackTrace();
-				interrupt=true;
-			} catch(InterruptedException e){
-				System.out.println("End FFT");
-				interrupt=true;
-			}
-
-		}
-	}
+//	@Override
+//	public void run() {
+//	    System.out.println("Run");
+//		boolean interrupt = false;
+//		while (!interrupt) {
+//			try {
+//                current_image = live_display_provider.getAnyImage();
+//                fft_store.putImage(fft.doFFT(current_image));
+//                interrupt = false;
+//                Thread.sleep(0);
+//            } catch(NullPointerException e) {
+//                e.printStackTrace();
+//                interrupt=false;
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//				interrupt=true;
+//			} catch(InterruptedException e){
+//				System.out.println("End FFT");
+//				interrupt=true;
+//			}
+//
+//		}
+//	}
 }
