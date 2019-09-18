@@ -1,1 +1,1 @@
-# Micromanager Plugin for taking the FHT power spectrum of your current image
+
