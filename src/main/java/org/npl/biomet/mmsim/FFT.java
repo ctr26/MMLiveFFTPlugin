@@ -38,8 +38,7 @@ public class FFT implements Runnable {
 
         ImageProcessor raw_image_ip = ijconverter.createProcessor(raw_image);
 
-        ImageProcessor padedraw_image_ip = raw_image_ip;
-
+        ImageProcessor padedraw_image_ip = padPower2(raw_image_ip);
 
         FHT fht = new FHT(raw_image_ip);
         fht.setShowProgress(false);
@@ -61,9 +60,9 @@ public class FFT implements Runnable {
         double log2_width = Math.log(width) / Math.log(2);
         double log2_height = Math.log(height) / Math.log(2);
 
-        int pow2_width = (int) Math.pow(Math.ceil(log2_width), 2);
-        int pow2_height = (int) Math.pow(Math.ceil(log2_height),2);
-
+        int pow2_width = (int) Math.pow(2,Math.ceil(log2_width));
+        int pow2_height = (int) Math.pow(2,Math.ceil(log2_height));
+` `
         if(pow2_width==width &&  pow2_height==height) {
             return raw_image_ip;
         }
@@ -72,7 +71,7 @@ public class FFT implements Runnable {
         ImageProcessor paddedProcessor = emptyProcessor.duplicate();
 
         int xloc = Math.round(pow2_width / 2 - width / 2);
-        int yloc = Math.round(pow2_width / 2 - width / 2);
+        int yloc = Math.round(pow2_height / 2 - height / 2);
 
         paddedProcessor.insert(raw_image_ip,xloc,yloc);
 
@@ -87,7 +86,8 @@ public class FFT implements Runnable {
         while (!interrupt) {
                 try {
                     Image current_image = imageProvider_.getAnyImage();
-                    outStore_.putImage(this.doFFT(current_image));
+                    Image fft_current_image = doFFT(current_image);
+                    outStore_.putImage(fft_current_image);
                     interrupt = false;
                     Thread.sleep(0);
                 } catch (NullPointerException e) {
