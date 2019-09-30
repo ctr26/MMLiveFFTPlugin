@@ -62,7 +62,7 @@ public class FFT implements Runnable {
 
         int pow2_width = (int) Math.pow(2,Math.ceil(log2_width));
         int pow2_height = (int) Math.pow(2,Math.ceil(log2_height));
-` `
+
         if(pow2_width==width &&  pow2_height==height) {
             return raw_image_ip;
         }
